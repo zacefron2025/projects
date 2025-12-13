@@ -1,0 +1,19 @@
+@use "header";
+@use "main";
+@use "footer";
+
+// SECTIONS
+@use "burger";
+@use "hero";
+@use "commissions";
+@use "about";
+@use "why";
+@use "events";
+@use "testimonials";
+@use "contacts";
+@use "form";
+
+// UI
+@use "button";
+@use "title";
+@use "marquee";

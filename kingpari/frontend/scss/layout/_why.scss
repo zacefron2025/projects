@@ -1,0 +1,246 @@
+@use "abstracts/functions" as *;
+@use "abstracts/mixins" as *;
+
+.why{
+    padding: 0 0 em(44);
+    &__marquee{
+        margin: em(128) 0 0;
+    }
+
+    &__wrap{
+        position: relative;
+        padding: em(78) 0 0 ;
+        &::before{
+            @include pseudo;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: em(684);
+            background: url(../img/why/wrap_bg.svg) center / 100% repeat, linear-gradient(150deg, #17191B, #414853 );
+        }
+    }
+
+    &__slider{
+        margin: 0 auto;
+        max-width: em(1484);
+        width: 100%;
+    }
+    
+    &__item{
+        position: relative;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        &::before{
+            @include pseudo;
+            top: em(184);
+            left: 0;
+            width: 100%;
+            height: em(168);
+            background-color: #970000; 
+            border-radius: em(50) em(50) 0 0;
+            z-index: -1 ;
+        }
+    }
+
+    &__item_pic{
+        width: em(447);
+        margin: 0 em(12) 0  0;
+
+        transform: translateY(50%);
+    }
+
+    &__item_box{
+        position: relative;
+        height: 100%;
+        padding: em(60);
+        border-radius: em(6);
+        border: em(3) solid #373B40;
+        border-top-left-radius: em(50);
+        margin: em(-170) 0 0;
+        background-color: var(--white, #fff);
+        flex: 1 1 auto;
+        z-index: 1;
+    }
+
+    &__item_title{
+        text-transform: uppercase;
+        font: italic 700 em(30) / 100% 'Druk Wide Cyr';
+        color: var(--black, #000);
+    }
+
+    &__item_description{
+        margin: em(30, 19) 0 0;
+        font:  500 em(19) / 130% 'Montserrat';
+        color: var(--text, #26292D);
+
+        b{
+            font-weight: 700;
+        }
+    }
+
+    &__item_leaf{
+        position: absolute;
+        right: em(20);
+        bottom: em(20);
+        width: em(44);
+        height: em(44);
+    }
+
+    @media (max-width: 1280px) {
+
+       &__marquee{
+            margin: em(24) 0 0;
+        }
+
+        &__wrap{
+            position: relative;
+            padding: em(24) 0 0 ;
+            &::before{
+                @include pseudo;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: em(432);
+                background: url(../img/why/wrap_bg.svg) center / 100% repeat, linear-gradient(150deg, #17191B, #414853 );
+            }
+        }
+
+        &__slider{
+            margin: 0 auto;
+            max-width: 100%;
+            width: 100%;
+
+            .splide__track{
+                overflow: visible;
+            }
+        }
+
+        &__arrows{
+            margin-top: em(16);
+            position: absolute;
+            bottom: em(-10);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &__arrow--prev, &__arrow--next{
+            width: em(44);
+            height: em(44);
+            transform: scale(1) translateZ(0.01px);
+            @include transition(300ms, transform);
+            @include pointer{
+                transform: scale(1.2) translateZ(0.01px);
+            }
+
+            svg{
+                width: 100%;
+                height: 100%;
+
+                path{
+                    fill: var(--text, #26292D);
+                }
+            }
+        }
+
+        
+
+        &__pagination {
+            margin: em(24) 0 0;
+            position: static;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: em(16)
+        }
+
+        &__page {
+            background-color: var(--text, #26292D);
+            border-radius: 50%;
+            width: em(10);
+            height: em(10);
+            opacity: 1;
+
+            transform: scale(1) translateZ(0.01px);
+            @include transition(300ms, transform);
+            @include pointer{
+                transform: scale(1.2) translateZ(0.01px);
+            }
+
+            &.is-active {
+                width: em(18);
+                height: em(22);
+                background: url(../img/testimonials/active.svg) center / 100% 100% no-repeat;
+                transform: scale(1);
+                background-color: transparent;
+                opacity: 1;
+            }
+        }
+        
+        &__item{
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            max-width: em(280);
+
+            &::before{
+                @include pseudo;
+                top: em(111);
+                left: 0;
+                width: 100%;
+                height: em(110);
+                background-color: #970000; 
+                border-radius: em(30) em(30) 0 0;
+            }
+        }
+
+        &__item_pic{
+            width: em(270);
+            margin: 0 em(12) 0  0;
+
+            transform: translateY(0);
+        }
+
+        &__item_box{
+            position: relative;
+            height: 100%;
+            padding: em(24) em(24) em(36);
+            border-radius: em(6);
+            border: em(2) solid #373B40;
+            border-top-left-radius: em(50);
+            margin: em(-103) 0 0;
+            background-color: var(--white, #fff);
+            flex: 1 1 auto;
+            z-index: 1;
+        }
+
+        &__item_title{
+            text-transform: uppercase;
+            font: italic 700 em(19) / 100% 'Druk Wide Cyr';
+            color: var(--black, #000);
+            br{
+                display: none;
+            }
+        }
+
+        &__item_description{
+            margin: em(16, 13) 0 0;
+            font:  500 em(13) / 130% 'Montserrat';
+
+        }
+
+        &__item_leaf{
+            position: absolute;
+            right: em(8);
+            bottom: em(8);
+            width: em(26);
+            height: em(26);
+        } 
+    }
+}

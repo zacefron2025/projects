@@ -1,0 +1,181 @@
+@use "abstracts/functions" as *;
+@use "abstracts/mixins" as *;
+
+.footer{
+    background-color: var(--black, #000);
+    &__wrap{
+        padding: em(62) 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;    
+    }
+
+    &__logo{
+        margin: em(30) 0 0;
+        width: em(200);
+    }
+
+    &__copyright{
+        margin: auto;
+        font:  500 em(18) / em(22, 18) 'Montserrat';
+        color: #A9A9A9;
+
+        br{
+            display: none;
+        }
+    }
+
+    &__socials{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    &__socials_title{
+        text-align: right;
+        text-transform: uppercase;
+        font: 400 em(18) / em(32, 18) 'Inter';
+        color: #A9A9A9;
+    }
+
+    &__socials_list{
+        margin: em(6) 0 0;
+        display: flex;
+        gap: em(22);
+    }
+
+    &__socials_item{
+        width: em(28);
+        height: em(28);
+        svg{
+            width: 100%;
+            height: 100%;
+            path{
+                @include transition(300ms, fill);
+            }
+        }
+        @include pointer{
+            svg path{
+                fill: var(--white);
+            }
+        }
+    }
+
+    &__rules{
+        position: relative;
+        margin: em(24, 14) 0 0;
+        font: 400 em(14) / em(22, 14) 'Inter';
+        color: #A9A9A9;
+        @include transition(300ms , color);
+
+        &::before{
+            @include pseudo;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--white, #fff);
+            @include transition(300ms , width);
+        }
+
+        @include pointer{
+            color: var(--white, #fff);
+            &::before{
+                width: 100%;
+            }
+        }
+    }
+
+    @media (max-width: 1280px) {
+
+        &__wrap{
+            padding: em(40) 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;    
+        }
+
+        &__logo{
+            order: 1;
+        }
+
+        &__copyright{
+            text-align: center;
+            margin: em(24) 0 0 ;
+            font:  500 em(12) / 120% 'Montserrat';
+            color: #A9A9A9;
+            order: 1;
+
+            br{
+                display: inline;
+            }
+        }
+
+        &__socials{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        &__socials_title{
+            text-align: right;
+            text-transform: uppercase;
+            font: 400 em(15) / em(32, 15) 'Inter';
+            color: #A9A9A9;
+        }
+
+        &__socials_list{
+            margin: em(12) auto 0;
+            max-width: em(250);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: em(40);
+        }
+
+        &__socials_item{
+            width: em(28);
+            height: em(28);
+            svg{
+                width: 100%;
+                height: 100%;
+                path{
+                    @include transition(300ms, fill);
+                }
+            }
+            @include pointer{
+                svg path{
+                    fill: var(--white);
+                }
+            }
+        }
+
+        &__rules{
+            position: relative;
+            margin: em(24, 14) 0 0;
+            font: 400 em(14) / em(22, 14) 'Inter';
+            color: #A9A9A9;
+            @include transition(300ms , color);
+
+            &::before{
+                @include pseudo;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 1px;
+                background-color: var(--white, #fff);
+                @include transition(300ms , width);
+            }
+
+            @include pointer{
+                color: var(--white, #fff);
+                &::before{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,117 @@
+@use "abstracts/functions" as *;
+@use "abstracts/mixins" as *;
+
+.about{
+    position: relative;
+    padding: em(182) 0 em(240);
+
+    &__scene{
+        position: absolute;
+        top: 0;
+        left: 50%;
+        margin-left: em(-120);
+        width: em(1086);
+        height: em(1156);
+        transform: translateY(30%);
+    }
+
+    &__scene_pic{
+        position: absolute;
+        &--1{
+            width: em(574);
+            top: em(134);
+            right: em(206);
+        }
+        &--2{
+            width: em(72);
+            top: em(126);
+            left: em(234);
+            animation: elementLevitation 3.25s ease-in-out infinite alternate !important;
+        }
+        &--3{
+            width: em(108);
+            top: em(106);
+            right: em(420);
+            animation: elementLevitation 2.25s ease-in-out infinite alternate !important;
+        }
+        &--4{
+            width: em(326);
+            bottom: em(240);
+            left: em(174);
+            animation: elementLevitation 2.75s ease-in-out infinite alternate !important;
+        }
+        &--5{
+            width: em(210);
+            bottom: em(280);
+            right: em(180);
+            animation: elementLevitation 3.5s ease-in-out infinite alternate !important;
+        }
+        &--6{
+            width: em(1014);
+            bottom: em(96);
+            right: em(0);
+        }
+        &--7{
+            width: em(38);
+            bottom: em(412);
+            left: em(466);
+            animation: elementLevitation 2s ease-in-out infinite alternate !important;
+        }
+        &--8{
+            width: em(108);
+            bottom: em(286);
+            right: em(414);
+            animation: elementLevitation 2.5s ease-in-out infinite alternate !important;
+        }
+    }
+
+    &__text{
+        font: 500 em(24) / 140% 'Montserrat';
+        color: var(--text,#26292D);
+        margin: em(126, 24) 0 0;
+        max-width: em(540, 24);
+
+        // overflow: hidden;
+        
+        // & > *{
+        //     transform: translateY(100%);
+        // }
+    }
+
+    &__video{
+        margin: em(320) 0 0 ;
+        width: 100%;
+        transform: translateY(20%);
+    }
+
+      @media (max-width: 1280px) {
+        position: relative;
+        padding: em(40) 0 em(60);
+
+        &__scene{
+            position: static;
+            font-size: 0.475rem;
+            margin-left: -11.5em;
+            transform: translateY(0);
+        }
+
+        &__text{
+            font: 500 em(17) / 140% 'Montserrat';
+            color: var(--text,#26292D);
+            margin: em(24, 17) 0 0;
+            max-width: 100%;
+
+            // overflow: hidden;
+            
+            // & > *{
+            //     transform: translateY(100%);
+            // }
+        }
+
+        &__video{
+            margin: em(0) 0 0 ;
+            width: 100%;
+            transform: translateY(0);
+        }
+    }
+}

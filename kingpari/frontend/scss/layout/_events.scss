@@ -1,0 +1,404 @@
+@use "abstracts/functions" as *;
+@use "abstracts/mixins" as *;
+
+.events{
+    padding: em(370) 0 0;
+
+    &__pers{
+        position: absolute;
+        top: em(-543);
+        left: 50%;
+        margin-left: em(-120);
+        width: em(933);
+        z-index: 1;
+    }
+
+    &__wrap{
+        position: relative;
+        padding: em(72) 0;
+        margin: em(90) 0 0;
+        background-image: linear-gradient(150deg, #17191B, #2B3036);
+    }
+
+    &__bg{
+        position: absolute;
+        inset: 0;
+
+        .splide__track{
+            height: 100%;
+        }
+    }
+
+    &__bg-slide{
+        &--1{
+           background-image: linear-gradient(150deg, #17191B, #2B3036);
+        }
+        &--2{
+             background-image: linear-gradient(150deg, #292C31, #373B41);
+        }
+        &--3{
+           background-image: linear-gradient(150deg, #17191B, #2B3036);
+        }
+        &--4{
+              background-image: linear-gradient(150deg, #292C31, #373B41);
+        }
+        &--5{
+            background-image: linear-gradient(150deg, #17191B, #2B3036);
+        }
+        &--6{
+            background-image: linear-gradient(150deg, #292C31, #373B41);
+        }
+    }
+
+    &__pagination {
+        margin: em(60) 0 0;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: em(510);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: em(20)
+    }
+
+    &__page {
+        background-color: var(--white, #fff);
+        border-radius: 50%;
+        width: em(14);
+        height: em(14);
+        opacity: 1;
+
+        transform: scale(1) translateZ(0.01px);
+        @include transition(300ms, transform);
+        @include pointer{
+            transform: scale(1.2) translateZ(0.01px);
+        }
+
+        &.is-active {
+            width: em(24);
+            height: em(28);
+            background: url(../img/testimonials/active.svg) center / 100% 100% no-repeat;
+            transform: scale(1);
+            background-color: transparent;
+            opacity: 1;
+        }
+    }
+
+    &__item{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__book{
+        display: flex;
+        flex-direction: column;
+        
+        width: em(614);
+        height: em(512);
+        padding: em(70) em(56);
+        border: em(3) solid #F2F2F2;
+    }
+    
+    &__info{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: em(44);
+    }
+    &__info_item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__info_text{
+        display: flex;
+        align-items: center;
+        gap: em(8);
+        text-transform: uppercase;
+        font: 600 em(26) / 100% 'Montserrat';
+        color: #BFBEBE;
+
+
+        img{
+            width: em(24, 26);
+            height: em(24, 26);
+        }
+    }
+
+    &__date {
+        text-transform: uppercase;
+        text-align: center;
+        margin: em(10, 42) 0 0;
+        font: 700 em(42) / 100% 'Montserrat';
+        color: var(--white, #fff);
+    }
+
+    &__place{
+        text-transform: uppercase;
+        text-align: center;
+        margin: em(10, 36) 0 0;
+        font: 700 em(36) / 100% 'Montserrat';
+        color: var(--white, #fff);
+    }
+
+    &__button{
+        text-align: center;
+        margin: auto 0 0;
+    }
+
+    &__company{
+        width: em(510);
+    }
+
+    &__company_logo{
+        position: relative;
+        display: flex;
+        height: em(230);
+        
+        &::before{
+            @include pseudo;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: em(1);
+            background-color: var(--white, #fff);
+        }
+
+        img{
+            margin: auto;
+        }
+        &--1{
+            width: em(232);
+        }
+        &--2{
+            width: em(361);
+        }
+        &--3{
+            width: em(222);
+        }
+        &--4{
+            width: em(396);
+        }
+        &--5{
+            width: em(538);
+        }
+        &--6{
+            width: em(310);
+        }
+    }
+
+    &__company_name{
+        text-transform: uppercase;
+        text-align: center;
+        margin: em(38, 60) 0 0;
+        font: 700 em(60) / 130% 'Montserrat';
+        color: var(--white, #fff);
+    }
+
+    @media (max-width: 1280px) {
+        padding: em(24) 0 0;
+
+        &__pers{
+            position: absolute;
+            top: em(-218);
+            left: 0;
+            margin-left: em(0);
+            width: em(375);
+            z-index: 1;
+        }
+
+        &__wrap{
+            position: relative;
+            padding: em(24) 0;
+            margin: em(248) 0 0;
+            background-image: linear-gradient(150deg, #17191B, #2B3036);
+        }
+
+        &__bg{
+            position: absolute;
+            inset: 0;
+
+            .splide__track{
+                height: 100%;
+            }
+        }
+
+        &__arrows{
+            margin-top: em(16);
+            position: absolute;
+            bottom: em(-10);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &__arrow--prev, &__arrow--next{
+            width: em(44);
+            height: em(44);
+            transform: scale(1) translateZ(0.01px);
+            @include transition(300ms, transform);
+            @include pointer{
+                transform: scale(1.2) translateZ(0.01px);
+            }
+
+            svg{
+                width: 100%;
+                height: 100%;
+
+                path{
+                    fill: var(--white, #fff);
+                }
+            }
+        }
+
+        
+
+        &__pagination {
+            margin: em(24) 0 0;
+            position: static;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: em(16)
+        }
+
+        &__page {
+            background-color: var(--white, #fff);
+            border-radius: 50%;
+            width: em(10);
+            height: em(10);
+            opacity: 1;
+
+            transform: scale(1) translateZ(0.01px);
+            @include transition(300ms, transform);
+            @include pointer{
+                transform: scale(1.2) translateZ(0.01px);
+            }
+
+            &.is-active {
+                width: em(18);
+                height: em(22);
+                background: url(../img/testimonials/active.svg) center / 100% 100% no-repeat;
+                transform: scale(1);
+                background-color: transparent;
+                opacity: 1;
+            }
+        }
+
+        &__item{
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            gap: em(36);
+        }
+
+        &__book{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: em(286);
+            padding: em(24);
+            border: em(2) solid #F2F2F2;
+            order: 1;
+        }
+        
+        &__info{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: em(24);
+        }
+        &__info_item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        &__info_text{
+            display: flex;
+            align-items: center;
+            gap: em(4);
+            text-transform: uppercase;
+            font: 600 em(16) / 100% 'Montserrat';
+            color: #BFBEBE;
+
+
+            img{
+                width: em(13, 16);
+                height: em(13, 16);
+            }
+        }
+
+        &__date {
+            text-transform: uppercase;
+            text-align: center;
+            margin: em(6, 24) 0 0;
+            font: 700 em(24) / 100% 'Montserrat';
+            color: var(--white, #fff);
+        }
+
+        &__place{
+            text-transform: uppercase;
+            text-align: center;
+            margin: em(6, 20) 0 0;
+            font: 700 em(20) / 100% 'Montserrat';
+            color: var(--white, #fff);
+        }
+
+        &__button{
+            text-align: center;
+            margin: auto 0 0;
+        }
+
+        &__company{
+            width: 100%;
+        }
+
+        &__company_logo{
+            display: flex;
+            height: em(110);
+
+            &::before{
+                @include pseudo;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: em(150);
+                height: em(1);
+                background-color: var(--white, #fff);
+            }
+            img{
+                margin: auto;
+            }
+            &--1{
+                width: em(129);
+            }
+            &--2{
+                width: em(229);
+            }
+            &--3{
+                width: em(124);
+            }
+            &--4{
+                width: em(207);
+            }
+            &--5{
+                width: em(311);
+            }
+            &--6{
+                width: em(153);
+            }
+        }
+
+        &__company_name{
+            margin: em(16, 32) 0 0;
+            font: 700 em(32) / 130% 'Montserrat';
+            color: var(--white, #fff);
+        }
+    }
+}

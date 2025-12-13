@@ -1,0 +1,276 @@
+@use "abstracts/functions" as *;
+@use "abstracts/mixins" as *;
+
+.testimonials{
+    padding: em(180) 0 em(130);
+
+    &__slider{
+        margin: em(90) 0 0;
+        // mask: linear-gradient(90deg, transparent 0, #000 2%, #000 98%, transparent);
+    }
+
+    &__arrows{
+        position: absolute;
+        top: em(260);
+        left: 50%;
+        width: 115%;
+        display: flex;
+        justify-content: space-between;
+        transform: translateX(-50%);
+    }
+
+    &__arrow--prev, &__arrow--next{
+        width: em(96);
+        height: em(96);
+        transform: scale(1) translateZ(0.01px);
+        @include transition(300ms, transform);
+        @include pointer{
+            transform: scale(1.2) translateZ(0.01px);
+        }
+
+        svg{
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &__pagination {
+        margin: em(60) 0 0;
+        position: static;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: em(20);
+    }
+
+    &__page {
+        border-radius: 50%;
+        width: em(14);
+        height: em(14);
+        background-color: var(--text, #26292D);
+        opacity: 1;
+
+        transform: scale(1) translateZ(0.01px);
+        @include transition(300ms, transform);
+        @include pointer{
+            transform: scale(1.2) translateZ(0.01px);
+        }
+
+        &.is-active {
+            width: em(24);
+            height: em(28);
+            background: url(../img/testimonials/active.svg) center / 100% 100% no-repeat;
+            transform: scale(1);
+            background-color: transparent;
+            opacity: 1;
+        }
+    }
+
+    &__item{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: em(54) em(36) em(24);
+        border-radius: em(24);
+        background: url(../img/testimonials/item_bg.png) top / 100% no-repeat #D9D9D9;
+    }
+
+    &__item_logo{
+        width: em(297);
+        margin: 0 auto;
+        padding: 0 0 em(120);
+    }
+
+    &__body{
+        margin: auto 0 0;
+    }
+
+    &__rank {
+        display: flex;
+        justify-content: center;
+        gap: em(3);
+    }
+
+    &__rank_item{
+        width: em(24);
+        height: em(24);
+
+        svg{
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &__text{
+        margin: em(14) 0 0;
+        font: 400 em(17) / 130% 'Montserrat';
+        color: var(--text, #26292D);
+    }
+
+    &__footer{
+        margin: em(4) 0 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    &__date{
+        font: 400 em(16) / em(30, 16) 'Inter';
+        color: #767676;
+    }
+
+    &__quotation {
+        display: grid;
+        place-items: center;
+        width: em(55);
+        height: em(55);
+        border-radius: 50%;
+        margin-right: em(-14);
+        background-color: var(--text, #26292D);
+
+        img{
+            width: em(20);
+            height: em(20);
+        }
+    }
+
+    @media (max-width: 1280px) {
+        padding: em(24) 0 em(32);
+
+        // .sub-container{
+        //     max-width: 100%;
+        // }
+
+        &__slider{
+            margin: em(24) 0 0;
+            // mask: linear-gradient(90deg, transparent 0, #000 2%, #000 98%, transparent);
+            .splide__track{
+                overflow: visible;
+            }
+            .splide__slide {
+                max-width: em(320); 
+            }
+        }
+
+        &__arrows{
+            position: absolute;
+            top: auto;
+            bottom: em(-8);
+            left: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateX(-50%);
+        }
+
+        &__arrow--prev, &__arrow--next{
+            width: em(44);
+            height: em(44);
+            transform: scale(1) translateZ(0.01px);
+            @include transition(300ms, transform);
+            @include pointer{
+                transform: scale(1.2) translateZ(0.01px);
+            }
+
+            svg{
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        &__pagination {
+            margin: em(36) 0 0;
+            position: static;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: em(16);
+        }
+
+        &__page {
+            border-radius: 50%;
+            width: em(10);
+            height: em(10);
+            background-color: var(--text, #26292D);
+            opacity: 1;
+
+            transform: scale(1) translateZ(0.01px);
+            @include transition(300ms, transform);
+            @include pointer{
+                transform: scale(1.2) translateZ(0.01px);
+            }
+
+            &.is-active {
+                width: em(18);
+                height: em(22);
+                background: url(../img/testimonials/active.svg) center / 100% 100% no-repeat;
+                transform: scale(1);
+                background-color: transparent;
+                opacity: 1;
+            }
+        }
+
+        &__item{
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            padding: em(40) em(24) em(16);
+            border-radius: em(18);
+            background: url(../img/testimonials/item_bg.png) top / 100% no-repeat #D9D9D9;
+        }
+
+        &__item_logo{
+            width: em(224);
+            margin: 0 auto;
+            padding: 0 0 em(120);
+        }
+
+        &__body{
+            margin: auto 0 0;
+        }
+
+        &__rank {
+            display: flex;
+            justify-content: center;
+            gap: em(2);
+        }
+
+        &__rank_item{
+            width: em(18);
+            height: em(18);
+        }
+
+        &__text{
+            margin: em(10) 0 0;
+            font: 400 em(13) / 130% 'Montserrat';
+            color: var(--text, #26292D);
+        }
+
+        &__footer{
+            margin: em(4) 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        &__date{
+            font: 400 em(12) / em(22, 12) 'Inter';
+            color: #767676;
+        }
+
+        &__quotation {
+            display: grid;
+            place-items: center;
+            width: em(42);
+            height: em(42);
+            border-radius: 50%;
+            margin-right: em(-10);
+            background-color: var(--text, #26292D);
+
+            img{
+                width: em(16);
+                height: em(16);
+            }
+        }
+    }
+}

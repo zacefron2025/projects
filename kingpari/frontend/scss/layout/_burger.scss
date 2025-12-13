@@ -1,0 +1,103 @@
+@use "abstracts/functions" as *;
+@use "abstracts/mixins" as *;
+
+.burger{
+    display: none;
+    @media (max-width: 1280px) {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        inset: 0;
+        padding: em(24) em(24) em(44);
+        background-color: var(--black, #000);
+        z-index: 10;
+        will-change: transform;
+        transition: transform 600ms cubic-bezier(0.25, 0.1, 0.25, 1);
+        transform: translateX(100%) rotate(0.01deg) translateZ(0.1px);
+
+        &.open{
+            transform: translateX(0) rotate(0.01deg) translateZ(0.1px);
+        }
+
+        &__wrap{
+            
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        &__close{
+            width: em(44);
+            height: em(44);
+            border: none;
+            cursor: pointer;
+        }
+
+        &__menu{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: em(24) 0;
+            flex: 1 1 0;
+            max-height: em(334);
+        }
+
+        &__menu_item{
+            position: relative;
+            font: 500 em(22) / 100% 'Montserrat';
+            color: var(--white, #fff);
+            margin: em(12, 22) 0;
+
+            &::before{
+                @include pseudo;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 1px;
+                background-color: var(--white, #fff);
+                @include transition(300ms , width);
+            }
+
+            @include pointer{
+                &::before{
+                    width: 100%;
+                }
+            }
+        }
+
+        &__buttons{
+            margin: auto 0 0;
+            padding: em(24) 0;
+            display: flex;
+            flex-direction: column;
+            gap: em(18);
+        }
+
+        &__socials{
+            margin: auto 0 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: em(48);
+        }
+
+        &__socials_item{
+            width: em(28);
+            height: em(28);
+            svg{
+                width: 100%;
+                height: 100%;
+                path{
+                    @include transition(300ms, fill);
+                }
+            }
+            @include pointer{
+                svg path{
+                    fill: var(--white);
+                }
+            }
+        }
+    }
+    
+}

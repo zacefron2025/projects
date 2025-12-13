@@ -1,0 +1,60 @@
+@use "abstracts/functions" as *;
+@use "abstracts/mixins" as *;
+
+.marquee {
+    padding: em(25) 0;
+    display: flex;
+    background-color: #373B41;
+
+    &__container {
+        display: flex;
+        align-items: center;
+        will-change: transform;
+        flex-shrink: 0;
+  }
+
+  &__item{
+    display: flex;
+    align-items: center;
+    font: italic 700 em(18) / em(26, 18) 'Druk Wide Cyr';
+    color: var(--white, #fff);
+    margin: 0 em(20);
+
+    span{
+        color: var(--accent, #F10000);
+    }
+
+    &--icon{
+        width: em(30, 18);
+        height: em(30, 18);
+    }
+  }
+
+  &__item_logo{
+    margin-bottom: em(4, 18);
+    width: em(120, 18);
+    height: em(26, 18);
+  }
+
+  @media (max-width: 1280px) {
+    padding: em(12.5) 0;
+
+    &__item{
+      font: italic 700 em(9) / 100% 'Druk Wide Cyr';
+      margin: 0 em(20);
+
+      &--icon{
+          width: em(15, 9);
+          height: em(15, 9);
+      }
+    }
+
+    &__item_logo{
+      margin-bottom: em(3, 9);
+      width: em(60, 9);
+      height: em(13, 9);
+    }
+  }
+}
+
+ 

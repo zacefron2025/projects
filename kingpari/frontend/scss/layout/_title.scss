@@ -1,0 +1,37 @@
+@use "abstracts/functions" as *;
+@use "abstracts/mixins" as *;
+
+.title{
+    text-transform: uppercase;
+    font: italic 700 em(70) / 100% 'Druk Wide Cyr';
+    overflow: hidden;
+
+    & > *{
+        transform: translateY(100%);
+    }
+
+    span{
+        display: inline-block;
+        padding: 0 0 0 em(128, 70);
+    }
+    
+    &--black{
+        color: var(--black, #010101);
+    }
+    
+    &--grey{
+        color: var(--text, #26292D);
+    }
+
+    @media (max-width: 1280px) {
+        overflow: unset;
+        font: italic 700 em(24) / 100% 'Druk Wide Cyr';
+        & > *{
+            transform: translateY(0);
+        }
+        span{
+            display: inline-block;
+            padding: 0 0 0 em(11, 24);
+        }
+    }
+}

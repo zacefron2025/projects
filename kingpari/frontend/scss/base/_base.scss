@@ -1,0 +1,149 @@
+@use "abstracts/functions" as *;
+@use "abstracts/mixins" as *;
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+
+  &::after,
+  &::before {
+    box-sizing: border-box;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+:root {
+  --white: #fff;
+  --black: #010101;
+  --accent: #F10000;
+  --text: #26292D;
+  --copyright: #A9A9A9;
+
+  font-size: vp(1920);
+
+  @media (max-width: 1280px) {
+     font-size: vp(375);
+  }
+
+  @media (max-width: 1280px) {
+     font-size: vp(600);
+  }
+
+  @media (max-width: 500px) {
+     font-size: vp(375);
+  }
+  // @media (max-width: 1500px) {
+  //   font-size: vp(1500);
+  // }
+  // @media (max-width: 1024px) {
+  //   font-size: 16px;
+  // }
+  // @media (max-width: 1200px) {
+  //   font-size: vp(1200);
+  // }
+  // @media (max-width: 1280px) {
+  //   font-size: 16px;
+  // }
+  // @media (max-width: 320px) {
+  //   font-size: vp(320);
+  // }//   <---
+
+  // font-size: vp(); //        => 1920px - 16px
+  // font-size: vp(1440);//    => 1440px - 16px
+  // font-size: vp(1440,14);// => 1440px - 14px
+}
+
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+  scroll-padding: em(130);
+
+  @media (max-width: 1280px) {
+    scroll-padding: em(60);
+  }
+}
+
+body {
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Montserrat", "Arial", "sans-serif";
+}
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+ 
+}
+
+.content{
+  background: url(../img/bg.jpg) center top/cover no-repeat;
+}
+
+.container {
+  max-width: em(1600);
+  width: 100%;
+  margin: 0 auto;
+
+  // @media (max-width: 1200px) {
+  //   max-width: em(768);
+  //   padding: 0 em(32);
+  // }
+
+  @media (max-width: 1280px) {
+    max-width: em(343);
+  }
+
+  // max-width: rem(1440); -> ну это поможет понять что в блоке :root{ имеется ввиду
+  // @media (max-width: 1024px) {
+  //   max-width: rem(500);
+  // }
+  // @media (max-width: 1280px) {
+  //   max-width: rem(388);
+  // }
+}
+
+.sub-container {
+  max-width: em(1378);
+  width: 100%;
+  margin: 0 auto;
+
+  @media (max-width: 1280px) {
+    max-width: em(343);
+  }
+}
+
+button {
+  font: inherit; 
+  color: inherit;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.splide {
+  &__track {
+  }
+  &__pagination {
+  }
+  &__pagination__page {
+    &.is-active {
+    }
+  }
+}
+
+.modal-open {
+  overflow: hidden;
+}

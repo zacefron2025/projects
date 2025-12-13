@@ -1,0 +1,91 @@
+@use "abstracts/functions" as *;
+@use "abstracts/mixins" as *;
+
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+    z-index: 10;
+    @include transition(300ms, background-color);
+
+    &.scrolled{
+        background-color: var(--black, #000);
+    }
+
+    &__wrap{
+        padding: em(24) 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    &__open{
+        display: none;
+    }
+
+    &__logo{
+        display: block;
+        width: em(235);
+    }
+
+    &__menu{
+        display: flex;
+        gap: em(42);
+    }
+
+    &__menu_item{
+        position: relative;
+        font: 500 em(18) / em(22, 18) 'Montserrat';
+        color: var(--white, #fff);
+
+        &::before{
+            @include pseudo;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--white, #fff);
+            @include transition(300ms , width);
+        }
+
+        @include pointer{
+            &::before{
+                width: 100%;
+            }
+        }
+    }
+
+    &__buttons{
+        display: flex;
+        gap: em(12);
+    }
+
+    @media (max-width: 1280px) {
+        &__wrap{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: em(12) 0;
+        }
+
+        &__open{
+            display: block;
+            width: em(32);
+            height: em(32);
+            border: none;
+            cursor: pointer;
+        }
+
+        &__logo{
+            width: em(105);
+        }
+
+        &__menu{
+            display: none;
+        }
+    }
+}
