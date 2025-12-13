@@ -119,7 +119,8 @@ const whySlider = new Splide(".why__slider.splide", {
   arrows: false,       // без стрелок
   pagination: false,   // без пагинации
   gap: "3.75em",
-  easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
+  
+  
   // autoWidth убираем, чтобы нормально работал perPage
   classes: {
     arrows: "why__arrows",                  // контейнер стрелок
@@ -130,16 +131,24 @@ const whySlider = new Splide(".why__slider.splide", {
     page: "why__page",
   },
 
+  reducedMotion: {
+    speed: 800,
+    rewindSpeed: 800,
+    autoplay: false, // или 'pause' если нужно
+  },
+
   // МОБИЛКА (ширина <= 1280)
   breakpoints: {
     1280: {
       type: 'loop',
-      autoWidth: true,
+      updateOnMove: true,
+      perPage: 1,
+      fixedWidth: '83%',     // <-- важно
+      drag: true,
+      arrows: true,
+      pagination: true,
       gap: "1em",
-      perPage: 1,        // один слайд за раз
-      drag: true,        // можно листать свайпом
-      arrows: true,      // показываем стрелки
-      pagination: true,  // показываем пагинацию
+      speed: 800,
     },
   },
 }).mount();
@@ -155,8 +164,8 @@ const testimonialsSlider = new Splide(".testimonials__slider.splide", {
   arrows: true,
   pagination: true,
   gap: "1.5em",
-  speed: 1280,
-  easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
+  speed: 800,
+  
 
   // КАСТОМНЫЕ КЛАССЫ
   classes: {
@@ -168,11 +177,19 @@ const testimonialsSlider = new Splide(".testimonials__slider.splide", {
     page: "testimonials__page",                      // каждая кнопка пагинации
   },
 
+  reducedMotion: {
+    speed: 800,
+    rewindSpeed: 800,
+    autoplay: false, // или 'pause' если нужно
+  },
+
   // МОБИЛКА
   breakpoints: {
     1280: {
+      updateOnMove: true,
       drag: true,
-      autoWidth: true,
+      perPage: 1,
+      fixedWidth: '83%', 
        gap: "1em",
     },
   },
@@ -184,9 +201,9 @@ const eventsSlider = new Splide(".events__slider.splide", {
   perPage: 1,
   arrows: false,
   pagination: true,
-  speed: 1280,
+  speed: 800,
   gap: "3em",
-  easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
+  
   classes: {
     arrows: "events__arrows",                  // контейнер стрелок
     arrow: "events__arrow",                    // обе стрелки
@@ -195,10 +212,18 @@ const eventsSlider = new Splide(".events__slider.splide", {
     pagination: "events__pagination",          // ul контейнер пагинации
     page: "events__page",                      // каждая кнопка пагинации
   },
+
+  reducedMotion: {
+    speed: 800,
+    rewindSpeed: 800,
+    autoplay: false, // или 'pause' если нужно
+  },
+
   breakpoints: {
-    type: 'loop', 
     1280: {
+      updateOnMove: true,
       arrows: true,
+      speed: 800,
     },
   },
 }).mount();
@@ -209,7 +234,7 @@ const bgSlider = new Splide(".events__bg.splide", {
   arrows: false,
   pagination: false,
   drag: false,
-  speed: 1280,
+  speed: 800,
   rewind: true, // как и у основного, если используешь
 }).mount();
 

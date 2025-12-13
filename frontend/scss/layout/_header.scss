@@ -64,6 +64,11 @@
     }
 
     @media (max-width: 1280px) {
+
+        .container{
+            max-width: 90%;
+        }
+
         &__wrap{
             display: flex;
             justify-content: space-between;
@@ -82,10 +87,19 @@
 
         &__logo{
             width: em(105);
+            margin-right: auto;
+            margin-left: em(22);
         }
 
         &__menu{
             display: none;
+        }
+    }
+
+    @media (max-width: 500px) {
+
+        .container{
+            max-width: em(343);
         }
     }
 }

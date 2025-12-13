@@ -278,7 +278,8 @@
             font: 600 em(18) / em(22, 18) 'Montserrat';
             color: var(--white, #fff);
             padding: em(16, 18);
-            width: 100%;
+            // width: 100%;
+            min-width: em(330, 18);
 
             &:before{
                 @include pseudo;
@@ -302,7 +303,8 @@
             font: 600 em(18) / em(22, 18) 'Montserrat';
             color: var(--white, #fff);
             padding: em(16, 18);
-            width: 100%;
+            // width: 100%;
+            min-width: em(330, 18);
 
             &:before{
                 @include pseudo;
@@ -320,6 +322,16 @@
                     filter: brightness(0.8);
                 }
             }
+        }
+    }
+
+    @media (max-width: 500px) {
+        .burger__button &--login{
+            width: 100%;
+        }
+
+        .burger__button &--signup{
+            width: 100%;
         }
     }
 }

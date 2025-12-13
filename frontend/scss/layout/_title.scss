@@ -24,6 +24,7 @@
     }
 
     @media (max-width: 1280px) {
+        text-align: center;
         overflow: unset;
         font: italic 700 em(24) / 100% 'Druk Wide Cyr';
         & > *{
@@ -31,7 +32,8 @@
         }
         span{
             display: inline-block;
-            padding: 0 0 0 em(11, 24);
+            // padding: 0 0 0 em(11, 24);
+            padding: 0;
         }
     }
 }

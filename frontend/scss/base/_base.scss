@@ -78,6 +78,15 @@ body {
   font-family: "Montserrat", "Arial", "sans-serif";
 }
 
+/* по умолчанию может быть хоть none — не важно */
+.splide__list { transition: none; }
+
+/* когда Splide делает go() — включаем анимацию */
+.splide.is-moving .splide__list {
+  transition: transform 800ms cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+}
+
+
 .wrapper {
   position: relative;
   width: 100%;
