@@ -78,13 +78,54 @@ const parallaxElems  = $$(".parallax");
 const parallaxElemsX = $$(".parallaxX");
 
 const isTouch =
-  'ontouchstart' in window ||
+  "ontouchstart" in window ||
   navigator.maxTouchPoints > 0 ||
   navigator.msMaxTouchPoints > 0;
 
+const isIOSMotionPermission =
+  typeof DeviceMotionEvent !== "undefined" &&
+  typeof DeviceMotionEvent.requestPermission === "function";
+
+function initParallax({ gyroscope = false } = {}) {
+  parallaxElems.forEach(el => new Parallax(el, {
+    gyroscope,
+  }));
+
+  parallaxElemsX.forEach(el => new Parallax(el, {
+    gyroscope,
+    limitY: 0,
+  }));
+}
+
+// ✅ ДЕСКТОП: мышь/курсор
 if (!isTouch) {
-  parallaxElems.forEach(el  => new Parallax(el));
-  parallaxElemsX.forEach(el => new Parallax(el, { limitY: 0 }));
+  initParallax({ gyroscope: false });
+} else {
+  // ✅ МОБИЛКА: гироскоп
+  const enableGyro = () => {
+    initParallax({ gyroscope: true });
+  };
+
+  if (isIOSMotionPermission) {
+    // iOS: нужно разрешение и только по клику/тачу
+    const ask = async () => {
+      try {
+        const state = await DeviceMotionEvent.requestPermission();
+        if (state === "granted") enableGyro();
+      } catch (e) {
+        // если запретили — можно оставить без параллакса или включить без gyro
+        // initParallax({ gyroscope: false });
+        console.warn("Motion permission denied", e);
+      }
+    };
+
+    // любой user gesture
+    window.addEventListener("click", ask, { once: true });
+    window.addEventListener("touchend", ask, { once: true });
+  } else {
+    // Android / старые iOS: разрешение не нужно
+    enableGyro();
+  }
 }
 
 // MARQEE
