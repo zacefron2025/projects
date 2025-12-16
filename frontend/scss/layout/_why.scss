@@ -2,13 +2,14 @@
 @use "abstracts/mixins" as *;
 
 .why{
-    padding: 0 0 em(44);
+    padding: em(182) 0 em(44);
     &__marquee{
         margin: em(128) 0 0;
     }
 
     &__wrap{
         position: relative;
+        margin: em(48) 0 0 ;
         padding: em(78) 0 0 ;
         &::before{
             @include pseudo;
@@ -89,7 +90,7 @@
     }
 
     @media (max-width: 1280px) {
-
+        padding: em(40) 0 em(44);
        &__marquee{
             margin: em(24) 0 0;
         }

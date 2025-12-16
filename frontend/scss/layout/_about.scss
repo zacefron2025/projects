@@ -3,7 +3,7 @@
 
 .about{
     position: relative;
-    padding: em(182) 0 em(240);
+    padding: em(182) 0 0;
 
     &__scene{
         position: absolute;
@@ -13,6 +13,10 @@
         width: em(1086);
         height: em(1156);
         transform: translateY(30%);
+    }
+
+    &__marquee{
+        margin: em(186) 0 0;
     }
 
     &__scene_pic{
@@ -86,13 +90,17 @@
 
       @media (max-width: 1280px) {
         position: relative;
-        padding: em(40) 0 em(60);
+        padding: em(40) 0 em(0);
 
         &__scene{
             position: static;
             font-size: 0.475rem;
             margin-left: -11.5em;
             transform: translateY(0);
+        }
+
+        &__marquee{
+            margin: em(40) 0 0;
         }
 
         &__text{
