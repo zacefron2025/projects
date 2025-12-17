@@ -14,6 +14,7 @@
   }
 
   &__item{
+    text-transform: uppercase;
     display: flex;
     align-items: center;
     font: italic 700 em(18) / em(26, 18) 'Druk Wide Cyr';
