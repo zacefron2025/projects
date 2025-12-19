@@ -2,9 +2,11 @@
 @use "abstracts/mixins" as *;
 
 .marquee {
+  position: relative;
     padding: em(25) 0;
     display: flex;
     background-color: #373B41;
+    z-index: 1;
 
     &__container {
         display: flex;
