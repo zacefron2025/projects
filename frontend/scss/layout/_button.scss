@@ -108,20 +108,29 @@
         color: var(--white, #fff);
         padding: em(20, 20) em(64, 20);
 
+        
+
         &:before{
             @include pseudo;
             inset: 0;
             border-radius: em(4, 20);
             border: em(1, 20) solid transparent;
             background: linear-gradient(#F80000, #C20000) padding-box, linear-gradient( #FF6C6C, transparent) border-box;
-            filter: brightness(1);
+            filter: brightness(1) grayscale(0);
             @include transition(300ms, filter);
             z-index: -1;
         }
+        
 
         @include pointer{
             &::before{
-                filter: brightness(0.8);
+                filter: brightness(0.8) grayscale(0);
+            }
+        }
+
+        &[disabled]{
+            &::before{
+                filter: brightness(0.8) grayscale(1);
             }
         }
     }

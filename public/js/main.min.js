@@ -460,3 +460,53 @@ document.addEventListener("DOMContentLoaded",  (event) => {
 });
 
 
+// FORM
+
+const form = document.getElementById('form');
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz23PHcgGx6aHsJ6hIJf9jzmPJgt2P6FujWtfAQYfAYTl4OJXUowQqupUtHuSZkRMl2NA/exec'; // Вставьте URL из Apps Script
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  const submitButton = form.querySelector('button[type="submit"]');
+  
+  const formData = {
+    name: form.querySelector('[name="name"]').value,
+    email: form.querySelector('[name="email"]').value,
+    message: form.querySelector('[name="message"]').value
+  };
+  
+  try {
+    submitButton.disabled = true;
+    submitButton.querySelector('span').textContent = 'Sending...';
+    
+    const response = await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData)
+    });
+    
+    alert('Message sent successfully!');
+    
+    // Сбрасываем форму
+    form.reset();
+    
+    // Возвращаем data-valid="false" на все поля
+    form.querySelectorAll('[data-valid]').forEach(field => {
+      field.setAttribute('data-valid', 'false');
+    });
+    
+    // Кнопка остается disabled
+    submitButton.querySelector('span').textContent = 'Become a Partner';
+    
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Error sending message');
+    // При ошибке возвращаем активность кнопки
+    submitButton.disabled = false;
+    submitButton.querySelector('span').textContent = 'Become a Partner';
+  }
+});
