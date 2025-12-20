@@ -768,6 +768,9 @@ html(lang="en" dir="ltr")
 
 								form#form.contacts__form.form(action="/")
 
+									label.form__honeypot(style="position: absolute; left: -9999px; opacity: 0; pointer-events: none;")
+										input(type="text" name="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true")
+
 									label.form__item
 
 										.form__item_name 
@@ -783,7 +786,7 @@ html(lang="en" dir="ltr")
 												img(src="public/img/form/error.svg", alt="Error icon" width="24" height="24")
 
 										.form__item_error
-											p Helper text
+											p Name is required and must be entered correctly.
 
 									label.form__item
 
@@ -800,7 +803,7 @@ html(lang="en" dir="ltr")
 												img(src="public/img/form/error.svg", alt="Error icon" width="24" height="24")
 
 										.form__item_error
-											p Helper text
+											p Email address is required and must be entered correctly.
 
 									label.form__item
 
@@ -828,6 +831,9 @@ html(lang="en" dir="ltr")
 
 											.form__checkbox_text 
 												p By clicking here, I state that I have read and understood <a href="#", target="_blank", rel="noopener noreferrer">Terms & Condition </a>
+
+										.form__item_error
+											p You must accept the Terms & Conditions to continue.
 
 									.form__submit 
 										button.button.button--submit(type="submit" disabled)

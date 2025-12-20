@@ -73,7 +73,7 @@
 
     &__item_error{
         position: absolute;
-        bottom: 0;
+        bottom: em(-2);
         left: 0;
         transform: translateY(100%);
         font: 500 em(14) / em(20, 14) 'Inter';

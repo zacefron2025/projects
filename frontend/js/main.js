@@ -465,9 +465,73 @@ document.addEventListener("DOMContentLoaded",  (event) => {
 const form = document.getElementById('form');
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz23PHcgGx6aHsJ6hIJf9jzmPJgt2P6FujWtfAQYfAYTl4OJXUowQqupUtHuSZkRMl2NA/exec'; // Вставьте URL из Apps Script
 
+// Конфигурация защиты от спама
+const SPAM_PROTECTION = {
+  MIN_FILL_TIME: 3000,        // Минимум 3 секунды на заполнение формы
+  SUBMIT_COOLDOWN: 5000,      // 5 секунд между отправками (в рамках сессии)
+  RATE_LIMIT_PERIOD: 60000,   // 1 минута между отправками (глобально)
+  RATE_LIMIT_KEY: 'form_submit_time'
+};
+
+// Состояние формы
+const formState = {
+  isSubmitting: false,
+  openTime: Date.now()
+};
+
+// Добавьте honeypot поле в вашу Jade форму:
+// label.form__honeypot(style="position: absolute; left: -9999px; opacity: 0; pointer-events: none;")
+//   input(type="text" name="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true")
+
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   
+  // ============================================
+  // ЗАЩИТА 1: Проверка на повторную отправку
+  // ============================================
+  if (formState.isSubmitting) {
+    alert('Please wait, your message is being sent...');
+    return;
+  }
+  
+  // ============================================
+  // ЗАЩИТА 2: Honeypot (ловушка дляботов)
+  // ============================================
+  const honeypotField = form.querySelector('[name="honeypot"]');
+  if (honeypotField && honeypotField.value) {
+    console.log('Bot detected via honeypot');
+    return; // Тихо игнорируем отправку
+  }
+  
+  // ============================================
+  // ЗАЩИТА 3: Минимальное время заполнения
+  // ============================================
+  const fillTime = Date.now() - formState.openTime;
+  if (fillTime < SPAM_PROTECTION.MIN_FILL_TIME) {
+    alert('Please take your time filling out the form');
+    return;
+  }
+  
+  // ============================================
+  // ЗАЩИТА 4: Rate Limiting (глобальный лимит)
+  // ============================================
+  const lastSubmitTime = localStorage.getItem(SPAM_PROTECTION.RATE_LIMIT_KEY);
+  const now = Date.now();
+  
+  if (lastSubmitTime) {
+    const timeSinceLastSubmit = now - parseInt(lastSubmitTime);
+    
+    if (timeSinceLastSubmit < SPAM_PROTECTION.RATE_LIMIT_PERIOD) {
+      const waitTime = Math.ceil((SPAM_PROTECTION.RATE_LIMIT_PERIOD - timeSinceLastSubmit) / 1000);
+      alert(`Please wait ${waitTime} seconds before submitting again`);
+      return;
+    }
+  }
+  
+  // ============================================
+  // Все проверки пройдены - отправляем форму
+  // ============================================
+  formState.isSubmitting = true;
   const submitButton = form.querySelector('button[type="submit"]');
   
   const formData = {
@@ -491,6 +555,9 @@ form.addEventListener('submit', async (e) => {
     
     alert('Message sent successfully!');
     
+    // Сохраняем время успешной отправки
+    localStorage.setItem(SPAM_PROTECTION.RATE_LIMIT_KEY, now.toString());
+    
     // Сбрасываем форму
     form.reset();
     
@@ -502,11 +569,69 @@ form.addEventListener('submit', async (e) => {
     // Кнопка остается disabled
     submitButton.querySelector('span').textContent = 'Become a Partner';
     
+    // Cooldown перед следующей попыткой отправки в рамках сессии
+    setTimeout(() => {
+      formState.isSubmitting = false;
+    }, SPAM_PROTECTION.SUBMIT_COOLDOWN);
+    
   } catch (error) {
     console.error('Error:', error);
     alert('Error sending message');
-    // При ошибке возвращаем активность кнопки
+    
+    // При ошибке возвращаем активность кнопки и сбрасываем флаг
     submitButton.disabled = false;
     submitButton.querySelector('span').textContent = 'Become a Partner';
+    formState.isSubmitting = false;
   }
 });
+
+// Сброс времени открытия при загрузке страницы
+window.addEventListener('load', () => {
+  formState.openTime = Date.now();
+});
+
+// form.addEventListener('submit', async (e) => {
+//   e.preventDefault();
+  
+//   const submitButton = form.querySelector('button[type="submit"]');
+  
+//   const formData = {
+//     name: form.querySelector('[name="name"]').value,
+//     email: form.querySelector('[name="email"]').value,
+//     message: form.querySelector('[name="message"]').value
+//   };
+  
+//   try {
+//     submitButton.disabled = true;
+//     submitButton.querySelector('span').textContent = 'Sending...';
+    
+//     const response = await fetch(GOOGLE_SCRIPT_URL, {
+//       method: 'POST',
+//       mode: 'no-cors',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify(formData)
+//     });
+    
+//     alert('Message sent successfully!');
+    
+//     // Сбрасываем форму
+//     form.reset();
+    
+//     // Возвращаем data-valid="false" на все поля
+//     form.querySelectorAll('[data-valid]').forEach(field => {
+//       field.setAttribute('data-valid', 'false');
+//     });
+    
+//     // Кнопка остается disabled
+//     submitButton.querySelector('span').textContent = 'Become a Partner';
+    
+//   } catch (error) {
+//     console.error('Error:', error);
+//     alert('Error sending message');
+//     // При ошибке возвращаем активность кнопки
+//     submitButton.disabled = false;
+//     submitButton.querySelector('span').textContent = 'Become a Partner';
+//   }
+// });
